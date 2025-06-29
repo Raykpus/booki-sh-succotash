@@ -348,6 +348,15 @@ The break and default keywords are optional, and will be described later in this
                 System.out.println("Inner: " + j); // Executes 6 times (2 * 3)
             }
          }
+         //Multiplication table example
+         //This example uses a nested loops to print a simple multiplication table(1 to 3):
+         for ( int i9 = 1; i9 <= 3; i9++) {
+            for (int j1 = 1; j1 <= 3; j1++){
+                System.out.println(i9 * j1 + " ");
+            }
+            System.out.println();
+         }
+         
             
   }
 }
