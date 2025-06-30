@@ -356,7 +356,26 @@ The break and default keywords are optional, and will be described later in this
             }
             System.out.println();
          }
-         
+         // The for-each Loop : There is also a for-each LOOP, which is used exclisively to loop through elements in an array ( or other data structures.)
+         String[] cars = {"Volvo", "BMW", "Ford", "Mazda"};
+          for (String i0 : cars) {
+            System.out.println(i0);
+          }
+          //More examples on the for loop
+          for (int i11 = 0; i11 <= 100; i11 += 10) {
+            System.out.println(i11);
+          }
+
+          for (int i12 =0; i12 <= 10; i12 += 2) {
+            System.out.println(i12);
+          }
+        
+          // in this next example we will have a multipliction table for the number 2 
+            int number = 2;
+
+          for (int i13 = 1; i13 <= 10; i13++) {
+            System.out.println(number + " x " + i13 + " = " + (number * i13));
+          }
             
   }
 }
