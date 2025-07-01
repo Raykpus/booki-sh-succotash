@@ -376,6 +376,78 @@ The break and default keywords are optional, and will be described later in this
           for (int i13 = 1; i13 <= 10; i13++) {
             System.out.println(number + " x " + i13 + " = " + (number * i13));
           }
+           /*
+            * Java Break and Continue:
+            You have already seen the Break Statement Used In an earlier chapter of this tutorial. It was used to jump Out of a switch Statment 
+            The Break Statement can also be used to breake out of a loop.
+            This example stops the loop when IT is equal to 4:
+            */
+            for (int i14 = 0; i14 < 10; i14++) {
+                if (i14 == 4) {
+                    break; // Breaks the loop when i is equal to 4
+                }
+                System.out.println(i14);
+            }
+            /*
+             * Java Continue Statement:
+             * the continue statement breakes one iteration (in the loop), if a specified condition occurs, and continues with the next iteration in the loop.
+             * This examples skips the Value of 4:
+             */
+            for (int i15 = 0; i15 < 10; i15++) {
+                if (i15 == 4) {
+                    continue; // Skips the rest of the code in the loop when i is equal to 4
+                }
+                System.out.println(i15);
+            }
+
+            /*
+             * Break and Continue in While Loops:
+             * The break and continue statements can also be used in while loops.
+             */
+            int i16 = 0;
+            while (i16 < 10) {
+                if (i16 == 4) {
+                    break; // Breaks the loop when i is equal to 4
+                }
+                System.out.println(i16);
+                i16++;
+            }
+
+            //Continue Example
+            int i17 = 0;
+            while (i17 < 10) {
+                if (i17 == 4) {
+                    i17++;
+                    continue; // Skips the rest of the code in the loop when i is equal to 4
+                }
+                System.out.println(i17);
+                i17++;
+            }
+
+
+            /*
+             * JAVA Arrays:
+             * Arrays are used to store multiple Values in a single variable, instead of eclearing separeate variables for each value.
+            * To declear an array, define the variable type with SQUARE brackets:
+             */
+            String[] cars2 = {"Volvo", "Benz", "BMW", "Ford", "Toyota"};
+            System.out.println(cars2[1]);
+
+            /*
+             * Change an Array element:
+             * to change the value of a specific element, refer to the index number: 
+             */
+            String[] cars3 = {"Benz", "BMW", "Toyota", "Jeep", "Bugatti"};
+            cars3[0] = "Volvo"; // Change the value of the first element
+            System.out.println(cars3[0]);
+            // New out put is "Volvo" instead of "Benz"
+
+            /*
+             * Array lenght 
+             * to find out how many elements an array has, use the length property:
+             */
+            String[] cars4 = {"Volvo", "BMW", "Ford", "Mazda"};
+            System.out.println(cars4.length);
             
   }
 }
