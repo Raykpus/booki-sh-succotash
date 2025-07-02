@@ -448,6 +448,73 @@ The break and default keywords are optional, and will be described later in this
              */
             String[] cars4 = {"Volvo", "BMW", "Ford", "Mazda"};
             System.out.println(cars4.length);
-            
+            /*
+             * Looping Through an Array:
+             * You can loop through the array elements with the for loop, and use the length property to specify how many times the loop should run:
+             * 
+             * the following example outputs all elements in the cars array:
+             */
+            String[] cars5 = {"Volvo", "BMW", "Ford", "Mazda"};
+            for (int i18 = 0; i18 < cars5.length; i18++) {
+                System.out.println(cars5[i18]);
+            }
+
+            /*
+             * Loop through an Array with for-each:
+             * There is also a for-each loop, which is used exclusively to loop through elements in Arrays.
+             * The following example Outputs all elements in the cars array, usinh a for-each loop:
+             */
+
+             String[] cars6 = {"Volvo", "BMW", "Ford", "Mazda"};
+             for (String i19 : cars6) {
+                System.out.println(i19);
+             }
+             /*
+              * The example above can be read like this: for each String element (called I is an index) in cars; print out the value of i.
+              If you compare the for loop and for-each loop, you will see that the for-each method is easier to write, it dose not require a counter (using the length property), and it is more readable.
+              */
+            //Real life examples:
+
+
+            // An array storing different ages
+            int ages[] = {18, 21, 25, 30, 35};
+
+            float avg, sum4 = 0;
+
+            // Get the length of the array
+            int length2 = ages.length;
+
+            // loop through the elements of the array
+            for (int age : ages) {
+                // add each element to the sum
+                sum4 += age;
+            }
+
+            //Calculate the average by dividing the sum by the lenght
+            avg = sum4 / length2;
+
+            // Print the average age
+            System.out.println("The average age is: " + avg);
+
+
+            //This next example will create a program that finds the lowest age amon different ages:
+
+            int[] ages2 = {18, 21, 25, 30, 35};
+
+            //get the length of the array
+            //int lenght3 = ages2.length;
+             
+            // Create a "lowest age" variable and set it to the first element of ages2 to it
+            int lowestAge =  ages2[0];
+            // Loop through the elements of the array to find the lowest age
+            for (int age : ages2) {
+                // If the current age is lower than the lowest age, update the lowest age
+                if (age < lowestAge) {
+                    lowestAge = age;
+                }
+            }
+            //Output the value of the lowest age
+            System.out.println("The Lowest age in arrays is: " + lowestAge);
+
   }
 }
