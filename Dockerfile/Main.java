@@ -1,4 +1,7 @@
 public class Main {
+    /**
+     * @param args
+     */
     public static void main(String[] args) {
     System.out.println("Hello, World!");
     String name = "John";
@@ -455,9 +458,9 @@ The break and default keywords are optional, and will be described later in this
              * the following example outputs all elements in the cars array:
              */
             String[] cars5 = {"Volvo", "BMW", "Ford", "Mazda"};
-            for (int i18 = 0; i18 < cars5.length; i18++) {
-                System.out.println(cars5[i18]);
-            }
+        for (String cars51 : cars5) {
+            System.out.println(cars51);
+        }
 
             /*
              * Loop through an Array with for-each:
@@ -515,6 +518,46 @@ The break and default keywords are optional, and will be described later in this
             }
             //Output the value of the lowest age
             System.out.println("The Lowest age in arrays is: " + lowestAge);
+
+            /*
+             * Multidimensional Arrays 
+             * A multidimentional array is an array of arrays.
+             * Multidimentional arrays are usefuk whhen you want to store data as a tabular form, like a table with rows and columns.
+             * To create a Two-dimensional array, add eacch array within it's own set of curly braces
+             * To access the elements of the myNumbers array, specify two indexes: one for the array, and one for the element inside that array. This example accesses the third element (2) in the second array (1) of myNumbers:
+             * EXAMPLE:
+             */
+            int[][] myNumbers = {{1, 2, 3, 4}, {5, 6, 7}};
+            System.out.println(myNumbers[1][2]);
+
+            /*
+             * Change ELement Values
+             * You can also change the valus of an element:
+             * Example:
+             */
+            int[][] myNumbers2 = {{1, 2, 3, 4, }, {5, 6, 7, 8} };
+            myNumbers2[1][2] = 9;
+            System.out.println(myNumbers2[1][2]); // Outputs 9 instead of 7
+
+            /*
+             * Loop through a Multi-Dimensional Arry
+             * You can use a for loop insidde another for loop to get the elements of a two-dimensional array (we still have to point to the two indexes):
+             * Example:
+             */
+            int[][] myNumbers3 = {{1, 2, 3, 4}, {5, 6, 7, 8}};
+        for (int[] i20 : myNumbers3) {
+            for (int j2 = 0; j2 < i20.length; j2++) {
+                System.out.println(i20[j2]);
+            }
+        }
+            //or you could use a for-each loop, which is considered easier to read and write:
+            int[][] myNumbers4 = {{1, 2, 3, 4}, {5, 6, 7, 8}};
+            for (int[] row : myNumbers4) {
+                for (int i21 : row) {
+                    System.out.println(i21);
+                }
+            }
+
 
   }
 }
