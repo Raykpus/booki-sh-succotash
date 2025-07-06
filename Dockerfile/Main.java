@@ -2,6 +2,9 @@ public class Main {
     /**
      * @param args
      */
+    public static void myMethod() {
+            System.out.println("I just got executed!");
+        }
     public static void main(String[] args) {
     System.out.println("Hello, World!");
     String name = "John";
@@ -557,7 +560,44 @@ The break and default keywords are optional, and will be described later in this
                     System.out.println(i21);
                 }
             }
+            /*
+             * Java methods:
+             * A Method is a block of code that only runs when it is called.
+             * You can passs data, know as parameters, into a method.
+             * Methods are used to perform certain actions,
+             * and they ar also known as funtions.
+             *  why use methods? to reuse code: define the code once, and use it many times.
+             * 
+             * First you need to create a method:
+             * 
+             * A method must be decleared within a class. it is defined with the name of the method, followed by parentheses ().  JAVA provides some pre-defined methods, but you can also create your own methods to perform certain actions:
+             * Example:
+             */
+            // Create a method called myMethod refeer to the top of the code for this example : (Line 5)
 
+            // Create a method called myMethod
+        
+        /*
+         * Example Explained 
+         * The myMethod() is the name of the method.
+         * The static means that the method belongs to the main class and no an object of the Main class. You will learn about Objects and how to access methods through objects later in this tutorial.
+         * void means that this method dose not have a returen value. You'll learn about return values later.
+         * 
+         * Call a method
+         * to call a method in java, write the method's name followed by two parentese () and a semicolon;
+         * 
+         * in the following example myMethod() is used to print a text (the action), when it is called:
+         */
+        myMethod();
+            // This method can also be called multiple times 
+        myMethod();
+        myMethod();
+        myMethod();
+        myMethod();
+        myMethod();
 
-  }
+        }
+
+        
+
 }
