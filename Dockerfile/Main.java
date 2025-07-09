@@ -595,6 +595,19 @@ The break and default keywords are optional, and will be described later in this
         myMethod();
         myMethod();
         myMethod();
+        // Java Methods Pararmeters
+        
+        // /*Parameters and Arguments
+        
+        // Information can be passed as a parameter. Parameters act as variabels inside  the method.
+        // Parameters are specified after the method name< inside, the parentheses. You can add as many parameters as you want, just seperate them with a comma.
+        
+        // The follow examples has a method that takes a string called fname as Parameter. WHen the method
+        /*Is called, we pass Along a first name,
+        Which is used inside the method to print the fullname:
+        Example:
+        */
+
 
         }
 
