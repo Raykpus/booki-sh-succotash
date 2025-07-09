@@ -5,6 +5,8 @@ public class Main {
     public static void myMethod() {
             System.out.println("I just got executed!");
         }
+    public static void yourMethod(String fname, int age){
+        System.out.println(fname + " is " + age + " years old.");}    
     public static void main(String[] args) {
     System.out.println("Hello, World!");
     String name = "John";
