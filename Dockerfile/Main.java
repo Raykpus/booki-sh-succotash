@@ -6,7 +6,30 @@ public class Main {
             System.out.println("I just got executed!");
         }
     public static void yourMethod(String fname, int age){
-        System.out.println(fname + " is " + age + " years old.");}    
+        System.out.println(fname + " is " + age + " years old.");}
+    public static void checkAge(int age) {
+        if (age < 18) {
+            System.out .println("Access denied - You are not old enogh! ");
+        }else {
+            System.out.println("Access granted - you are old enough!");
+        }
+    }       
+  static int thatMethod(int x) {
+        return 5 + x;
+    }
+    static int theMethod(int z, int y){
+        return z + y;
+    }
+    static int funMethod(int c, int v){
+        return c + v;
+    }
+    static int plusMethodint(int m, int n) {
+        return m + n;
+    }
+    static double plusMethodDouble(double l, double k) {
+        return l + k;
+    }
+
     public static void main(String[] args) {
     System.out.println("Hello, World!");
     String name = "John";
@@ -609,7 +632,52 @@ The break and default keywords are optional, and will be described later in this
         Which is used inside the method to print the fullname:
         Example:
         */
+        yourMethod("john", 20);
+        yourMethod("Jane", 25);
+        yourMethod("Mark", 20);
 
+        //A Method With  if .... else statement :
+        //It's coommon to use if...else statements inside methods:
+        checkAge(20);
+        checkAge(15);
+           
+
+        /*
+         * Java return:
+         * Return Values
+         * In the Previous Page, We used the Void Keyword in all examples, which indicates that the method should not return a value.
+         * 
+         * If you want the method to return a value, you cna use a primitive data type(such as int, char, etc.)
+         * Instead of void , and use the return keyword inside the method:
+         * Example
+         */
+          System.out.println(thatMethod(4));
+         /*
+          * This example returns the sum of a method's two parameters:
+          */
+          System.out.println(theMethod(3 ,5));
+
+
+          int b1 = funMethod(5, 3);
+          System.out.println(b1);
+
+          /*
+           * Java Method Overloading
+           * Method Overloading : With Method Overloading, multiple methods can have the same name with different parameters.
+           * Example:
+           * 
+           * int myMethod(int x)
+           * float myMethod(float x)
+           * double myMethod(double x, double y)
+           * 
+           * Consider the following example, which has two methods that add numbers of different type:
+           * Example:
+           */ 
+
+           int myNum1 = plusMethodint(8, 5);
+           double myNum2 = plusMethodDouble(4.3, 6.26);
+           System.out.println("int: " + myNum1);
+           System.out.println("double: " + myNum2);
 
         }
 
