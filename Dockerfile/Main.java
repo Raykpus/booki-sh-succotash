@@ -30,6 +30,10 @@ public class Main {
         return l + k;
     }
 
+    static double plusMethod(double a, double b) {
+        return a + b;
+    }
+
     public static void main(String[] args) {
     System.out.println("Hello, World!");
     String name = "John";
@@ -679,7 +683,26 @@ The break and default keywords are optional, and will be described later in this
            System.out.println("int: " + myNum1);
            System.out.println("double: " + myNum2);
 
+           //Instead of defining two methods that should do the same thing, It is better to overload one.
+           //In the example below, we overload the pluseMethod method to work for both int and double:
+
+              
+           double myNum4 = plusMethod(4.3, 6.26);
+           
+           System.out.println("double: " + myNum4);
+
+        /*
+         * Java Scope 
+         * In java, variables are only accessible inside the region they are creadted. This is called SCOPE.
+         * 
+         * Method Scope 
+         * Variables declear directly inside a method are available anwhere in the method following the line 
+         */
+
+
         }
+
+    
 
         
 
