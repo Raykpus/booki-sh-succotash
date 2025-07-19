@@ -9,8 +9,8 @@ public class Main {
         System.out.println(fname + " is " + age + " years old.");}
     public static void checkAge(int age) {
         if (age < 18) {
-            System.out .println("Access denied - You are not old enogh! ");
-        }else {
+            System.out.println("Access denied - You are not old enough! ");
+        } else {
             System.out.println("Access granted - you are old enough!");
         }
     }       
@@ -103,7 +103,7 @@ public class Main {
     System.out.println(myDouble2);
     System.out.println(myInt2); 
 
-    /*Real-Life example: here is a real life example of casting where we creaye a program to calculate the percentage of a user"s score in relation to the maximum score in a game 
+    /*Real-Life example: here is a real life example of casting where we create a program to calculate the percentage of a user's score in relation to the maximum score in a game 
      * 
      * we use type casting to make sure that the result is a floating-point value, rather than an integer.
      */
@@ -462,8 +462,8 @@ The break and default keywords are optional, and will be described later in this
 
             /*
              * JAVA Arrays:
-             * Arrays are used to store multiple Values in a single variable, instead of eclearing separeate variables for each value.
-            * To declear an array, define the variable type with SQUARE brackets:
+             * Arrays are used to store multiple Values in a single variable, instead of declaring separate variables for each value.
+            * To declare an array, define the variable type with SQUARE brackets:
              */
             String[] cars2 = {"Volvo", "Benz", "BMW", "Ford", "Toyota"};
             System.out.println(cars2[1]);
@@ -567,7 +567,7 @@ The break and default keywords are optional, and will be described later in this
              * You can also change the valus of an element:
              * Example:
              */
-            int[][] myNumbers2 = {{1, 2, 3, 4, }, {5, 6, 7, 8} };
+            int[][] myNumbers2 = {{1, 2, 3, 4}, {5, 6, 7, 8}};
             myNumbers2[1][2] = 9;
             System.out.println(myNumbers2[1][2]); // Outputs 9 instead of 7
 
