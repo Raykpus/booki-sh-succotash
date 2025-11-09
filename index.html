@@ -1,38 +1,453 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <style>
-      body {background-color: powderblue;}
-      h1   {color: blue;}
-      p    {color: red;}
-    </style>
-  </head>
-    <bodys>
-        <h2 style="color: aqua;">CatPhotosApp</h2>
-        <main>
-            <h3 style="font-family:Verdana, Geneva, Tahoma, sans-serif;">Cat Photos</h3>
-          <!--TODO: Add link to cat photos-->
-          <p>Click here to view more <a href="$" target="_blank">cat photos</a>.</p>
-          <h3 style="text-align: center;">Cat List</h3>
-          <p style="text-align: center;">things cats love:</p>
-          <ul style="text-align: center;">
-            <li style="color: aqua;">cat nip</li>
-            <li>laser pointer</li>
-            <li>lasagna</li>
-          </ul>
-          <<img src="c:\Users\akpus\Pictures\_DSC5949_DSC5949.jpg" width="90" height="60" alt="_DSC5949_DSC5949">
-        </main>
-    </body>
-    <body>
-      <h1><strong>God is great</strong></h1>
-        <p style="font-size:large;"><bold>he is our       King</bold></p>
-        <p>the <abbr title="World Health Organisation">WHO</abbr> was founded in 1948</p>
-        <p>A wise man once sed <q>never give up on what you know will get you somewhere i the neares futuer</q> and his name was <q>ME</q></p>
-        <hr>
-        <p><cite>The Screams</cite> By Edvard Munch. Painted in 1893.</p>
-        <h1 style="background-color: rgb(50, 50 ,71);">This is a profile i created for myslef to have fun with </h1>
-        <h1 style="border:2px solid rgb(9, 5, 253);">Come get some my guy, You know what"s up with it</h1>
-        <h1 style="background-color: rgba(255, 99, 100, 0.9);">Stay with me Brain we got to go get the money man!</h1>
-        <p>hey there world</p>
-    </body>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>ClipFlow — Multi-Channel YouTube Clipper & Poster (Frontend Prototype)</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b1020;
+    --glass: rgba(255,255,255,0.06);
+    --accent: linear-gradient(90deg,#7cf7ff,#8a7bff);
+    --neon: #7cf7ff;
+    --muted: rgba(255,255,255,0.6);
+    --card: rgba(255,255,255,0.03);
+  }
+  *{box-sizing:border-box;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial}
+  html,body{height:100%;margin:0;background:
+    radial-gradient(1200px 600px at 10% 5%, rgba(122,90,255,0.07), transparent 8%),
+    radial-gradient(1000px 500px at 90% 95%, rgba(124,247,255,0.02), transparent 8%),
+    var(--bg); color:#eaf6ff}
+  .app{
+    max-width:1200px;margin:28px auto;padding:28px;display:grid;grid-template-columns:320px 1fr 360px;gap:20px;
+  }
+
+  /* LEFT - channels */
+  .panel{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+          border-radius:14px;padding:18px;backdrop-filter: blur(8px);box-shadow: 0 6px 30px rgba(0,0,0,0.6);
+          border:1px solid rgba(255,255,255,0.03)}
+  h2{margin:0 0 14px 0;font-size:18px;font-weight:700}
+  .small{font-size:13px;color:var(--muted);margin-bottom:10px}
+  .inputRow{display:flex;gap:8px}
+  input[type="text"], input[type="datetime-local"], textarea{background:transparent;border:1px solid rgba(255,255,255,0.06);
+    padding:10px;border-radius:10px;color:inherit;width:100%;outline:none}
+  button{background:linear-gradient(90deg,#6ef 10%, #9f7dff 100%);
+    color:#02121e;border:none;padding:10px 14px;border-radius:12px;font-weight:700;cursor:pointer;box-shadow:0 6px 22px rgba(101,92,255,0.12)}
+  button.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+  ul.channelList{list-style:none;padding:0;margin:14px 0 0 0;display:flex;flex-direction:column;gap:10px}
+  li.channel{display:flex;align-items:center;gap:10px;padding:8px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent)}
+  .thumb{width:54px;height:40px;background:#111;border-radius:8px;flex:0 0 54px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:11px}
+  .chanMeta{flex:1}
+  .chanMeta b{display:block}
+  .iconSmall{width:26px;height:26px;border-radius:8px;background:rgba(255,255,255,0.02);display:flex;align-items:center;justify-content:center;font-size:13px}
+
+  /* MIDDLE - videos */
+  .videosGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+  .cardVideo{border-radius:12px;overflow:hidden;background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03)}
+  .cardThumb{position:relative;padding-top:56.25%;background:#000}
+  .cardThumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .cardBody{padding:10px}
+  .cardBody h3{margin:0;font-size:14px;line-height:1.2}
+  .cardBody p{margin:8px 0 0 0;font-size:12px;color:var(--muted)}
+  .selectBtn{margin-top:8px;display:flex;gap:8px;align-items:center}
+
+  /* RIGHT - clip editor */
+  .clipEditor{display:flex;flex-direction:column;gap:12px}
+  .preview{background:var(--card);border-radius:10px;padding:10px;min-height:180px}
+  iframe{width:100%;height:200px;border-radius:10px;border:0}
+  label{font-size:13px;color:var(--muted);display:block;margin-bottom:6px}
+  .row{display:flex;gap:8px;align-items:center}
+  .platforms{display:flex;gap:10px;flex-wrap:wrap}
+  .platform{padding:8px 10px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;cursor:pointer}
+  .platform.active{box-shadow:0 6px 18px rgba(124,247,255,0.06);transform:translateY(-3px)}
+  .hint{font-size:12px;color:#9fdcff}
+
+  /* Floating Apple-style button */
+  .appleBtn{
+    position:fixed;right:28px;bottom:28px;width:70px;height:70px;border-radius:999px;
+    display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+    border:1px solid rgba(255,255,255,0.06);cursor:pointer;backdrop-filter: blur(6px);
+    box-shadow:0 12px 40px rgba(138,123,255,0.12);
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .appleBtn:hover{transform:translateY(-8px) scale(1.06);box-shadow:0 26px 80px rgba(138,123,255,0.18)}
+  .appleInner{width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,#fff,#dbe9ff);display:flex;align-items:center;justify-content:center;color:#051026;font-weight:800;letter-spacing:-1px}
+  .appleInner::after{content:"";font-family: "Arial Unicode MS", "Segoe UI Symbol";font-size:20px}
+  /* small screens */
+  @media (max-width:1100px){.app{grid-template-columns:1fr;max-width:940px;padding:16px}}
+</style>
+</head>
+<body>
+  <div class="app" role="application" aria-label="ClipFlow app">
+    <!-- LEFT -->
+    <section class="panel" aria-labelledby="chTitle">
+      <h2 id="chTitle">Channels</h2>
+      <div class="small">Add channel URL or ID → fetch recent uploads. (Prototype uses mock data.)</div>
+      <div class="inputRow" style="margin-bottom:12px;">
+        <input id="channelInput" type="text" placeholder="https://youtube.com/channel/..." aria-label="Channel URL or ID">
+        <button id="addChannel">Add</button>
+      </div>
+      <div style="display:flex;gap:8px;margin-bottom:10px;">
+        <button id="fetchAll" class="secondary">Fetch all</button>
+        <button id="clearChannels" class="secondary">Clear</button>
+      </div>
+      <ul class="channelList" id="channelList" aria-live="polite"></ul>
+    </section>
+
+    <!-- MIDDLE: Videos -->
+    <main class="panel" aria-labelledby="vidTitle">
+      <h2 id="vidTitle">Videos</h2>
+      <div class="small">Select videos to create clips. Click a card → choose clip times in the editor on the right.</div>
+      <div style="margin:12px 0;display:flex;gap:8px;">
+        <input id="searchInput" type="text" placeholder="Search videos (client-side)" aria-label="Search videos">
+        <button id="searchBtn" class="secondary">Search</button>
+      </div>
+
+      <div id="videos" class="videosGrid" aria-live="polite"></div>
+    </main>
+
+    <!-- RIGHT: Clip editor -->
+    <aside class="panel clipEditor" aria-labelledby="editTitle">
+      <h2 id="editTitle">Clip Editor</h2>
+      <div class="small">Preview, set start & end, pick platforms, and schedule.</div>
+
+      <div class="preview" id="previewArea">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <div><strong id="selTitle">No video selected</strong><div class="hint" id="selChannel"></div></div>
+          <div id="selDuration" class="hint"></div>
+        </div>
+        <div style="margin-top:10px" id="playerWrapper">
+          <div style="min-height:200px;display:grid;place-items:center;color:var(--muted)">Select a video to preview the clip</div>
+        </div>
+      </div>
+
+      <div>
+        <label>Start time (sec)</label>
+        <div class="row">
+          <input id="startSec" type="number" min="0" value="0" style="width:100px">
+          <label style="margin-left:8px">End time (sec)</label>
+          <input id="endSec" type="number" min="1" value="15" style="width:100px">
+          <button id="previewClip" class="secondary" style="margin-left:auto">Preview</button>
+        </div>
+        <div class="hint" id="clipHint">Max clip length: 60s (recommended).</div>
+      </div>
+
+      <div>
+        <label>Platforms</label>
+        <div class="platforms" id="platforms">
+          <div class="platform" data-id="twitter">X / Twitter</div>
+          <div class="platform" data-id="facebook">Facebook</div>
+          <div class="platform" data-id="instagram">Instagram</div>
+          <div class="platform" data-id="tiktok">TikTok</div>
+        </div>
+      </div>
+
+      <div>
+        <label>Caption / Post text</label>
+        <textarea id="caption" rows="3" placeholder="Write a caption..."></textarea>
+      </div>
+
+      <div>
+        <label>Schedule (local)</label>
+        <input id="sched" type="datetime-local">
+      </div>
+
+      <div style="display:flex;gap:8px;">
+        <button id="postNow">Send Now</button>
+        <button id="scheduleBtn" class="secondary">Schedule</button>
+        <button id="exportBtn" class="secondary">Export Clip (mock)</button>
+      </div>
+
+      <div class="small" style="margin-top:10px;color:#9fdcff" id="status">Status: Idle</div>
+    </aside>
+  </div>
+
+  <!-- Floating apple-style button -->
+  <div class="appleBtn" title="Quick Actions" id="quickBtn" role="button" aria-label="Quick actions">
+    <div class="appleInner"></div>
+  </div>
+
+<script>
+/*
+  ClipFlow Frontend Prototype
+  - This demo is frontend-only and uses mock data to illustrate UI flows.
+  - IMPORTANT: Actual clipping/downloading and posting requires a backend with:
+      * YouTube Data API access and OAuth (to respect rate limits & ToS)
+      * A media processing service (FFmpeg server or cloud functions) to create clip files
+      * OAuth & API access tokens for each social platform (X, Facebook, Instagram, TikTok)
+      * Secure storage of keys/tokens and server-side posting flows.
+  - The functions below mark where you'd integrate your backend endpoints:
+    /api/fetchChannelVideos   (POST: channelId) -> returns list of videos
+    /api/createClip           (POST: videoId, start, end) -> returns clipId / URL when processed
+    /api/postToPlatforms      (POST: clipUrl, platforms[], caption, schedule) -> enqueues or posts
+*/
+
+// ---------- Mock data & helpers ----------
+const mockChannels = [
+  {id:'UC_x5XG1OV2P6uZZ5FSM9Ttw', name:'MockTech', subs:'1.2M', thumb:'', info:'Tech & dev'},
+  {id:'UCJZ7f6NQzGKZnFXzFW9y9UQ', name:'MockMusic', subs:'980K', thumb:'', info:'Music shorts'},
+];
+const mockVideos = [
+  {videoId:'dQw4w9WgXcQ', title:'Never Gonna Give You Up', duration:213, thumb:'https://i.ytimg.com/vi/dQw4w9WgXcQ/hqdefault.jpg', channel:'MockMusic'},
+  {videoId:'kxopViU98Xo', title:'Cool Tech Demo', duration:95, thumb:'https://picsum.photos/seed/tech/400/240', channel:'MockTech'},
+  {videoId:'s3T4j5K8', title:'Short Clip Example', duration:45, thumb:'https://picsum.photos/seed/short/400/240', channel:'MockTech'}
+];
+
+let appState = {channels:[], videos:[], selectedVideo:null, platforms: new Set()};
+
+// ---------- DOM refs ----------
+const channelList = document.getElementById('channelList');
+const addChannelBtn = document.getElementById('addChannel');
+const channelInput = document.getElementById('channelInput');
+const fetchAllBtn = document.getElementById('fetchAll');
+const clearChannelsBtn = document.getElementById('clearChannels');
+const videosDiv = document.getElementById('videos');
+const searchInput = document.getElementById('searchInput');
+const searchBtn = document.getElementById('searchBtn');
+
+const selTitle = document.getElementById('selTitle');
+const selChannel = document.getElementById('selChannel');
+const playerWrapper = document.getElementById('playerWrapper');
+const startSec = document.getElementById('startSec');
+const endSec = document.getElementById('endSec');
+const previewClipBtn = document.getElementById('previewClip');
+const platformsEl = document.getElementById('platforms');
+const captionEl = document.getElementById('caption');
+const schedEl = document.getElementById('sched');
+const postNowBtn = document.getElementById('postNow');
+const scheduleBtn = document.getElementById('scheduleBtn');
+const exportBtn = document.getElementById('exportBtn');
+const statusEl = document.getElementById('status');
+const quickBtn = document.getElementById('quickBtn');
+
+// ---------- UI helpers ----------
+function setStatus(txt, level='info'){
+  statusEl.textContent = 'Status: ' + txt;
+  if(level==='error') statusEl.style.color = '#ffadad'; else statusEl.style.color = '#9fdcff';
+}
+
+function renderChannels(){
+  channelList.innerHTML = '';
+  appState.channels.forEach((c, idx)=>{
+    const li = document.createElement('li');
+    li.className = 'channel';
+    li.innerHTML = `<div class="thumb">YT</div>
+      <div class="chanMeta"><b>${c.name || c.id}</b><span class="hint">${c.info || ''}</span></div>
+      <div class="iconSmall" title="Fetch videos" data-idx="${idx}">⤓</div>`;
+    channelList.appendChild(li);
+  });
+  // bind fetch buttons
+  channelList.querySelectorAll('.iconSmall').forEach(el=>{
+    el.addEventListener('click', (e)=> {
+      const idx = e.currentTarget.getAttribute('data-idx');
+      mockFetchChannelVideos(appState.channels[idx].id);
+    });
+  });
+}
+
+function renderVideos(list){
+  videosDiv.innerHTML = '';
+  list.forEach(v=>{
+    const card = document.createElement('div');
+    card.className = 'cardVideo';
+    card.innerHTML = `<div class="cardThumb"><img src="${v.thumb}" alt="${v.title}"></div>
+      <div class="cardBody">
+        <h3>${v.title}</h3>
+        <p>${v.channel} • ${v.duration}s</p>
+        <div class="selectBtn"><button data-vid="${v.videoId}" class="selectBtnAction">Select</button></div>
+      </div>`;
+    videosDiv.appendChild(card);
+  });
+  // attach selects
+  videosDiv.querySelectorAll('.selectBtnAction').forEach(btn=>{
+    btn.addEventListener('click', ()=> {
+      const vid = btn.getAttribute('data-vid');
+      const v = appState.videos.find(x=>x.videoId===vid);
+      if(v) selectVideo(v);
+    });
+  });
+}
+
+// ---------- Mock backend flows (replace these with real endpoints) ----------
+function mockFetchChannelVideos(channelId){
+  setStatus('Fetching videos for ' + channelId + ' (mock)');
+  // In real integration: POST /api/fetchChannelVideos with channelId -> return recent uploads
+  return new Promise((resolve)=>{
+    setTimeout(()=>{
+      // return mockVideos filtered by channelId in a simple way
+      const result = mockVideos.filter(m => m.channel.toLowerCase().includes(channelId.toLowerCase()) || Math.random()>0.5);
+      // merge to appState
+      appState.videos = Array.from(new Set([...appState.videos, ...result]));
+      renderVideos(appState.videos);
+      setStatus('Fetched ' + result.length + ' videos (mock)');
+      resolve(result);
+    },700);
+  });
+}
+
+function mockCreateClip(videoId, start, end){
+  setStatus('Creating clip (mock)...');
+  // Real: POST /api/createClip -> performs FFmpeg clipping and returns a hosted clip URL
+  const duration = end - start;
+  return new Promise((resolve,reject)=>{
+    setTimeout(()=>{
+      if(duration<=0 || duration>600) return reject(new Error('Invalid duration'));
+      const clipUrl = `https://mock.cdn/clip/${videoId}_${start}_${end}.mp4`;
+      setStatus('Clip ready: ' + clipUrl);
+      resolve({clipUrl, duration});
+    },1200);
+  });
+}
+
+function mockPostToPlatforms(clipUrl, platforms, caption, scheduleAt=null){
+  setStatus('Sending to platforms (mock)...');
+  // Real: POST /api/postToPlatforms with OAuth tokens server-side
+  return new Promise((resolve)=>{
+    setTimeout(()=>{
+      setStatus('Posted to ' + platforms.join(', ') + (scheduleAt?(' scheduled at '+scheduleAt):' (mock)'));
+      resolve({ok:true});
+    },900);
+  });
+}
+
+// ---------- App flows ----------
+addChannelBtn.addEventListener('click', ()=>{
+  const v = channelInput.value.trim();
+  if(!v) return setStatus('Enter a channel URL or ID', 'error');
+  // Normalize: extract last path segment as ID if URL
+  let id = v;
+  try{
+    const url = new URL(v);
+    id = url.pathname.split('/').filter(Boolean).pop();
+  }catch(e){}
+  appState.channels.push({id, name:id, info:'Added'});
+  renderChannels();
+  channelInput.value='';
+  setStatus('Channel added locally');
+});
+
+fetchAllBtn.addEventListener('click', ()=>{
+  setStatus('Fetching videos for all channels (mock)');
+  Promise.all(appState.channels.map(c=>mockFetchChannelVideos(c.id))).then(()=>setStatus('All channels fetched (mock)'));
+});
+
+clearChannelsBtn.addEventListener('click', ()=>{ appState.channels=[]; appState.videos=[]; renderChannels(); renderVideos([]); setStatus('Cleared channels & videos'); });
+
+searchBtn.addEventListener('click', ()=>{
+  const q = searchInput.value.trim().toLowerCase();
+  if(!q){ renderVideos(appState.videos); return; }
+  const filtered = appState.videos.filter(v => v.title.toLowerCase().includes(q) || v.channel.toLowerCase().includes(q));
+  renderVideos(filtered);
+  setStatus('Search results: ' + filtered.length);
+});
+
+// quick demo: if no channels, seed mock channels & videos
+if(appState.channels.length===0){
+  appState.channels = mockChannels.slice();
+  appState.videos = mockVideos.slice();
+  renderChannels();
+  renderVideos(appState.videos);
+  setStatus('Demo loaded. Add your channels or replace with real backend.');
+}
+
+// selecting a video
+function selectVideo(v){
+  appState.selectedVideo = v;
+  selTitle.textContent = v.title;
+  selChannel.textContent = v.channel + ' • ' + v.duration + 's';
+  startSec.value = 0;
+  endSec.value = Math.min(30, v.duration);
+  playerWrapper.innerHTML = `
+    <iframe id="ytplayer" src="https://www.youtube.com/embed/${v.videoId}?rel=0&modestbranding=1" allow="accelerometer; autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+  `;
+  setStatus('Video selected: ' + v.title);
+}
+
+// preview clip uses start & end to show a player with start param
+previewClipBtn.addEventListener('click', ()=>{
+  const v = appState.selectedVideo;
+  if(!v) return setStatus('No video selected', 'error');
+  const s = Math.max(0, Math.floor(Number(startSec.value)||0));
+  const e = Math.min(v.duration, Math.floor(Number(endSec.value)||s+15));
+  if(e<=s) return setStatus('End must be greater than start', 'error');
+  if(e-s>60) setStatus('Warning: clip >60s; some platforms restrict length', 'error');
+  const url = `https://www.youtube.com/embed/${v.videoId}?start=${s}&end=${e}&rel=0&autoplay=1&modestbranding=1`;
+  playerWrapper.innerHTML = `<iframe src="${url}" allow="accelerometer; autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
+  setStatus(`Previewing clip ${s}s → ${e}s`);
+});
+
+// platforms toggles
+platformsEl.querySelectorAll('.platform').forEach(el=>{
+  el.addEventListener('click', ()=> {
+    const id = el.getAttribute('data-id');
+    if(appState.platforms.has(id)){ appState.platforms.delete(id); el.classList.remove('active'); }
+    else { appState.platforms.add(id); el.classList.add('active'); }
+  });
+});
+
+// Export clip (mock)
+exportBtn.addEventListener('click', async ()=>{
+  const v = appState.selectedVideo;
+  if(!v) return setStatus('Select a video first', 'error');
+  const s = Math.max(0, Math.floor(Number(startSec.value)||0));
+  const e = Math.min(v.duration, Math.floor(Number(endSec.value)||s+15));
+  try{
+    const res = await mockCreateClip(v.videoId, s, e);
+    // In a real app you'd provide a link to download the clip file.
+    setStatus('Clip exported: ' + res.clipUrl);
+    alert('Mock clip available at: ' + res.clipUrl + '\n(Replace this flow with your backend FFmpeg + storage.)');
+  }catch(err){
+    setStatus(err.message, 'error');
+  }
+});
+
+// Send Now / Schedule
+postNowBtn.addEventListener('click', async ()=>{
+  const v = appState.selectedVideo;
+  if(!v) return setStatus('Select a video to clip & post', 'error');
+  if(appState.platforms.size===0) return setStatus('Select at least one platform', 'error');
+  const s = Math.max(0, Math.floor(Number(startSec.value)||0));
+  const e = Math.min(v.duration, Math.floor(Number(endSec.value)||s+15));
+  try{
+    const clip = await mockCreateClip(v.videoId, s, e);
+    await mockPostToPlatforms(clip.clipUrl, Array.from(appState.platforms), captionEl.value || v.title, null);
+    alert('Mock post successful (check status line). Replace mock endpoints with secure server flows.');
+  }catch(err){
+    setStatus(err.message, 'error');
+  }
+});
+
+scheduleBtn.addEventListener('click', async ()=>{
+  const v = appState.selectedVideo;
+  if(!v) return setStatus('Select a video', 'error');
+  if(appState.platforms.size===0) return setStatus('Select at least one platform', 'error');
+  const scheduleAt = schedEl.value;
+  if(!scheduleAt) return setStatus('Pick a schedule time', 'error');
+  const s = Math.max(0, Math.floor(Number(startSec.value)||0));
+  const e = Math.min(v.duration, Math.floor(Number(endSec.value)||s+15));
+  try{
+    const clip = await mockCreateClip(v.videoId, s, e);
+    await mockPostToPlatforms(clip.clipUrl, Array.from(appState.platforms), captionEl.value || v.title, scheduleAt);
+    alert('Mock schedule created for ' + scheduleAt + '. Replace with real backend scheduling.');
+  }catch(err){
+    setStatus(err.message, 'error');
+  }
+});
+
+// Quick button opens modal actions (simple)
+quickBtn.addEventListener('click', ()=> {
+  const choice = prompt('Quick actions:\\n1) Add demo channels\\n2) Clear everything\\n3) Fetch all videos', '1');
+  if(choice==='1'){ appState.channels = mockChannels.slice(); appState.videos = mockVideos.slice(); renderChannels(); renderVideos(appState.videos); setStatus('Demo channels loaded'); }
+  if(choice==='2'){ appState.channels=[]; appState.videos=[]; renderChannels(); renderVideos([]); setStatus('Cleared everything'); }
+  if(choice==='3'){ fetchAllBtn.click(); }
+});
+
+// Accessibility: keyboard focus for select
+document.addEventListener('keydown', (e)=>{
+  if(e.key==='k' && (e.ctrlKey || e.metaKey)){ searchInput.focus(); e.preventDefault(); }
+});
+</script>
+
+</body>
 </html>
